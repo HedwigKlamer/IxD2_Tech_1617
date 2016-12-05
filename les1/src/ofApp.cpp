@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	grabber.setDeviceID(0);
+	grabber.setDeviceID(1);
 	grabber.setup(GRABBER_WIDTH, GRABBER_HEIGHT, true);
 	//grabber.listDevices();
 	
