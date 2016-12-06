@@ -29,6 +29,8 @@ public:
 	ofxCvColorImage rgbImage;
 	ofxCvColorImage hsvImage;
 	ofxCvGrayscaleImage hue;
+	ofxCvGrayscaleImage saturation;
+	ofxCvGrayscaleImage brightness;
 
 	ofxCvGrayscaleImage filtered;
 	ofxCvContourFinder finder;
@@ -36,8 +38,11 @@ public:
 	ofxCvContourFinder contours;
 
 	int selectedHue;
-
+	int centerContour;
+	
+	bool showHSVComponents = true;
 	bool showContours = true;
+	bool showFilter = true;
 	bool showVideo = true;
 
 private:
