@@ -3,10 +3,10 @@
 
 void Ball::reset() {
 	position = ofPoint(ofGetWidth() / 4, ofGetHeight() / 2);
-	speed = ofVec2f(ofRandom(1, 3) * 3 + 2, ofRandom(-1, 1) * 5 + 2);
+	speed = ofVec2f(ofRandom(1, 2) * 3 + 2, ofRandom(-1, 1) * 5 + 2);
 }
 
-bool Ball::update(int mouseY) {
+bool Ball::update(int centerY) {
 	position += speed;
 
 	if (position.y > ofGetHeight() - BALL_RADIUS || position.y < BALL_RADIUS) {
@@ -14,7 +14,7 @@ bool Ball::update(int mouseY) {
 	}
 
 	if (position.x > ofGetWidth() - BALL_RADIUS - ofApp::PADDLE_WIDTH) {
-		if (position.y >= mouseY - ofApp::PADDLE_HEIGHT / 2 && position.y <= mouseY + ofApp::PADDLE_HEIGHT / 2) {
+		if (position.y >= centerY- ofApp::PADDLE_HEIGHT / 2 && position.y <= centerY + ofApp::PADDLE_HEIGHT / 2) {
 			speed.x = -speed.x;
 		}
 		else {

@@ -21,9 +21,13 @@ void ofApp::setup() {
 }
 
 void ofApp::update() {
-	bool wasReset = ball.update(mouseY);
+	ball.update(centerContour);
+	bool wasReset = ball.update(centerContour);
 	if (wasReset) {
 		missedCount++;
+	}
+	for (int i = 0; i < contours.blobs.size(); i++) {
+		centerContour = contours.blobs[i].centroid.y*ofGetHeight() / GRABBER_HEIGHT - PADDLE_HEIGHT / 2;
 	}
 	grabber.update();
 
@@ -55,12 +59,13 @@ void ofApp::update() {
 void ofApp::draw() {
 	ball.draw();
 
-	ofDrawRectangle(ofGetWidth() - PADDLE_WIDTH,
-		MIN(MAX(contours.centroid.y*ofGetHeight() / GRABBER_HEIGHT - PADDLE_HEIGHT / 2, 0), ofGetHeight() - PADDLE_HEIGHT),
-		PADDLE_WIDTH, PADDLE_HEIGHT);
-
+	for (int i = 0; i < contours.blobs.size(); i++) {
+		ofDrawRectangle(ofGetWidth() - PADDLE_WIDTH,
+			MIN(MAX(centerContour, 0), ofGetHeight() - PADDLE_HEIGHT),
+			PADDLE_WIDTH, PADDLE_HEIGHT);
+	}
 	ofDrawBitmapString("Missed: " + ofToString(missedCount), 10, 10);
-	
+
 	ofSetColor(ofColor::white);
 	if (showVideo) {
 		rgbImage.draw(0, 0, ofGetWidth(), ofGetHeight());
@@ -77,8 +82,10 @@ void ofApp::draw() {
 	if (showContours) {
 		contours.draw(0, 0, ofGetWidth(), ofGetHeight());
 	}
+
 	ofSetColor(ofColor::blue, 100);
 	ofFill();
+
 	for (int i = 0; i < contours.nBlobs; i++) {
 		ofDrawCircle(contours.blobs[i].centroid.x*ofGetWidth() / GRABBER_WIDTH,
 			contours.blobs[i].centroid.y*ofGetHeight() / GRABBER_HEIGHT, 10);
@@ -105,6 +112,4 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 	selectedHue = hue.getPixels()[y * GRABBER_WIDTH + x];
 	cout << "Selected: " << selectedHue << endl;
-
-
 }

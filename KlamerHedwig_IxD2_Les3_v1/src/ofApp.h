@@ -21,9 +21,9 @@ public:
 	void mousePressed(int x, int y, int button);
 
 	static const int PADDLE_WIDTH = 20;
-	static const int PADDLE_HEIGHT = 150;
+	static const int PADDLE_HEIGHT = 500;
 
-
+	
 	ofVideoGrabber grabber;
 
 	ofxCvColorImage rgbImage;

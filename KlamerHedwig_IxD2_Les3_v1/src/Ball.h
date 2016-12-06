@@ -12,7 +12,7 @@ class Ball {
 public:
 	void reset();
 
-	bool update(int mouseY);
+	bool update(int centerY);
 
 	void draw();
 };
