@@ -1,5 +1,6 @@
-#pragma once
 
+/*All functions are explainen at the ofApp.cpp :)*/
+#pragma once
 #include "ofMain.h"
 
 
@@ -8,7 +9,7 @@ class ofApp : public ofBaseApp {
 public:
 	void setup();
 	void update();
-	void draw();
+	
 	bool bSetupArduino;	// flag variable for setting up arduino once
 	void keyPressed(int key);
 	void exit();
@@ -23,8 +24,6 @@ private:
 	ofSoundPlayer killAudio;
 
 	int infraVal;
-	int count;
-	bool bEL;
 	int flick;
 	int random;
 };
